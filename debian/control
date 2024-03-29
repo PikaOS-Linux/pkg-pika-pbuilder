@@ -1,4 +1,4 @@
-Source: upstream-name
+Source: pika-pbuilder
 Section: admin
 Priority: optional
 Maintainer: name <email>
@@ -6,14 +6,7 @@ Standards-Version: 4.6.1
 Build-Depends: debhelper-compat (= 13)
 Rules-Requires-Root: no
 
-Package: pkgname1
-Architecture: linux-any
-# Delete any of these lines if un-used
-Depends: ${misc:Depends}, depends
-Recommends: high priority optdepends
-Conflicts: conflicts
-Suggests: low priority optdepends
-Breaks: also conflicts!?
-Provides: provides
-#
-Description: pkgdesc
+Package: pika-pbuilder
+Architecture: all
+Depends: ${misc:Depends}, pbuilder, debootstrap, devscripts, debhelper, sbuild, debhelper
+Description: pika pbuilder setup

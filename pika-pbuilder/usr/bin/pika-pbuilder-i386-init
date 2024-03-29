@@ -1,0 +1,2 @@
+#! /bin/bash
+DIST=sid ARCH=i386 pbuilder create --distribution sid --architecture i386 --debootstrapopts --include=ca-certificates "$@"

@@ -1,0 +1,4 @@
+USENETWORK=yes
+HOOKDIR="/var/cache/pbuilder/hook.d/"
+APTCACHEHARDLINK=no
+export DEBIAN_FRONTEND="noninteractive"
