@@ -1,0 +1,4 @@
+#! /bin/bash
+echo "Using x86_64-v3 pbuilder config!"
+cp -vf /var/cache/pbuilder/rc.examples/pbuilderrc-v3 /etc/pbuilderrc
+ARCH=amd64 pbuilder build --architecture amd64 --buildresult . --logfile buildlog.log "$@"

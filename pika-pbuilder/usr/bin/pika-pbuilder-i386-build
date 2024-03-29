@@ -1,2 +1,2 @@
 #! /bin/bash
-DIST=sid ARCH=i386 pbuilder build "$@" --distribution sid --architecture i386 --debootstrapopts --include=ca-certificates 
+ARCH=i386 pbuilder build --architecture i386 --buildresult . --logfile buildlog.log "$@"

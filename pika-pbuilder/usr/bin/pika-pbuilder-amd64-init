@@ -1,2 +1,2 @@
 #! /bin/bash
-DIST=sid ARCH=amd64 pbuilder create --distribution sid --architecture amd64 --debootstrapopts --include=ca-certificates "$@"
+ARCH=amd64 pbuilder create --architecture amd64 "$@"

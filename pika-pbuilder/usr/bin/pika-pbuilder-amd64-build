@@ -1,2 +1,1 @@
-#! /bin/bash
-DIST=sid ARCH=amd64 pbuilder build --distribution sid --architecture amd64 --debootstrapopts --include=ca-certificates --buildresult . --logfile buildlog.log "$@"
+pika-pbuilder-amd64-v3-lto-build
