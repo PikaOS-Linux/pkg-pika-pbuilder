@@ -22,17 +22,17 @@ Signed-by: /usr/share/keyrings/debian-archive-keyring.gpg
 EOF
 
 # Add Pika Repos
-# tee /etc/apt/sources.list.d/system.sources <<'EOF'
-# X-Repolib-Name: PikaOS System Sources
-# Enabled: yes
-# Types: deb
-# URIs: https://ppa.pika-os.com/
-# Suites: pikauwu
-# Components: main amdgpu rocm
-# X-Repolib-ID: system
-# X-Repolib-Default-Mirror: https://ppa.pika-os.com/
-# Signed-By: /etc/apt/keyrings/pika-keyring.gpg.key
-# EOF
+tee /etc/apt/sources.list.d/system.sources <<'EOF'
+X-Repolib-Name: PikaOS System Sources
+Enabled: yes
+Types: deb
+URIs: https://ppa.pika-os.com/
+Suites: pikauwu
+Components: canary
+X-Repolib-ID: system
+X-Repolib-Default-Mirror: https://ppa.pika-os.com/
+Signed-By: /etc/apt/keyrings/pika-keyring.gpg.key
+EOF
 
 # Add DMO Repos
 tee /etc/apt/sources.list.d/dmo.sources <<'EOF'
@@ -57,9 +57,6 @@ Components: main
 X-Repolib-Default-Mirror: http://archive.neon.kde.org/user/
 Signed-By: /etc/apt/keyrings/kde-neon-keyring.gpg.key
 EOF
-
-# # Workarounds Repo
-# echo "deb [trusted=yes] https://raw.githubusercontent.com/cosmicfusion/debian-workaround-packages-repo/main sid main" > /etc/apt/sources.list.d/cosmo-workarounds.list
 
 # Get keyrings
 mkdir -p /etc/apt/keyrings/
@@ -99,7 +96,7 @@ Pin-Priority: -1
 
 # Give pika lowest priority because we don't want it sources overwriting
 Package: *
-Pin: release a=pikauwu,c=main
+Pin: release a=pikauwu,c=canary
 Pin-Priority: 390
 EOF
 
