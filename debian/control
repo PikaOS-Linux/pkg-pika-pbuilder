@@ -8,5 +8,5 @@ Rules-Requires-Root: no
 
 Package: pika-pbuilder
 Architecture: all
-Depends: ${misc:Depends}, pbuilder, debootstrap, devscripts, debhelper, sbuild, debhelper
+Depends: ${misc:Depends}, pbuilder, debootstrap, devscripts, debhelper, sbuild, debhelper, cowbuilder
 Description: pika pbuilder setup
