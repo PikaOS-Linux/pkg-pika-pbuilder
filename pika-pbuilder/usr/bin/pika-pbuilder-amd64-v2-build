@@ -1,4 +1,4 @@
 #! /bin/bash
 echo "Using x86_64-v2 pbuilder config!"
 cp -vf /var/cache/pbuilder/rc.examples/pbuilderrc-v2 /etc/pbuilderrc
-ARCH=amd64 pbuilder build --architecture amd64 --buildresult . --logfile buildlog.log "$@"
+ARCH=amd64 cowbuilder build --architecture amd64 --buildresult . --logfile buildlog.log "$@"
