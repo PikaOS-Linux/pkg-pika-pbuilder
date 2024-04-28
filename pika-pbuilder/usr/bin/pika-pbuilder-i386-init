@@ -1,2 +1,2 @@
 #! /bin/bash
-ARCH=i386 pbuilder create --architecture i386 "$@"
+ARCH=i386 cowbuilder create --architecture i386 "$@"
