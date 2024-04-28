@@ -11,3 +11,10 @@ export DEB_BUILD_MAINT_OPTIONS="-march=x86-64-v2 -O3"
 export DEB_CFLAGS_MAINT_APPEND="-march=x86-64-v2 -O3"
 export DEB_LDFLAGS_MAINT_APPEND="-O3"
 DEBBUILDOPTS="-j32 -nc --no-sign"
+PDEBUILD_PBUILDER=cowbuilder
+BASETGZ="/var/cache/pbuilder/$NAME-base.tgz"
+# Cowbuilder understands no BASETGZ, but uses BASEPATH
+BASEPATH=/var/cache/pbuilder/$NAME-base.cow
+DEBOOTSTRAPOPTS=(${DEBOOTSTRAPOPTS[@]/--keyring=*})
+DEBOOTSTRAPOPTS=(${DEBOOTSTRAPOPTS[@]} --keyring=/usr/share/keyrings/debian-archive-keyring.gpg)
+
