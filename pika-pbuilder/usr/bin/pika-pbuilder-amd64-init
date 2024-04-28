@@ -1,2 +1,2 @@
 #! /bin/bash
-ARCH=amd64 pbuilder create --architecture amd64 "$@"
+ARCH=amd64 cowbuilder create --architecture amd64 "$@"
