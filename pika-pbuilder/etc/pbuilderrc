@@ -5,3 +5,9 @@ APTCACHEHARDLINK=no
 # pbuilder dist config
 DIST="sid"
 EXTRAPACKAGES="ca-certificates"
+PDEBUILD_PBUILDER=cowbuilder
+BASETGZ="/var/cache/pbuilder/$NAME-base.tgz"
+# Cowbuilder understands no BASETGZ, but uses BASEPATH
+BASEPATH=/var/cache/pbuilder/$NAME-base.cow
+DEBOOTSTRAPOPTS=(${DEBOOTSTRAPOPTS[@]/--keyring=*})
+DEBOOTSTRAPOPTS=(${DEBOOTSTRAPOPTS[@]} --keyring=/usr/share/keyrings/debian-archive-keyring.gpg)
