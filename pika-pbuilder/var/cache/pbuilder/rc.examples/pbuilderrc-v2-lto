@@ -10,6 +10,7 @@ export DEBIAN_FRONTEND="noninteractive"
 export DEB_BUILD_MAINT_OPTIONS="optimize=+lto -march=x86-64-v2 -O3 -flto -fuse-linker-plugin -falign-functions=32"
 export DEB_CFLAGS_MAINT_APPEND="-march=x86-64-v2 -O3 -flto -fuse-linker-plugin -falign-functions=32"
 export DEB_LDFLAGS_MAINT_APPEND="-march=x86-64-v2 -O3 -flto -fuse-linker-plugin -falign-functions=32"
+export DEB_BUILD_OPTIONS="parallel=8 nocheck notest nodoc terse"
 DEBBUILDOPTS="-j8 -nc --no-sign"
 PDEBUILD_PBUILDER=cowbuilder
 BASETGZ="/var/cache/pbuilder/$NAME-base.tgz"
