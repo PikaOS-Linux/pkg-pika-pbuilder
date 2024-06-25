@@ -20,4 +20,3 @@ DEBOOTSTRAPOPTS=(${DEBOOTSTRAPOPTS[@]/--keyring=*})
 DEBOOTSTRAPOPTS=(${DEBOOTSTRAPOPTS[@]} --keyring=/usr/share/keyrings/debian-archive-keyring.gpg)
 EXTRAPACKAGES=eatmydata
 EATMYDATA=yes
-export LD_PRELOAD=${LD_PRELOAD:+$LDPRELOAD:}libeatmydata.so
