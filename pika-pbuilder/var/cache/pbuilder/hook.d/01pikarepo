@@ -46,59 +46,22 @@ X-Repolib-Default-Mirror: https://www.deb-multimedia.org/
 Signed-By: /etc/apt/keyrings/deb-multimedia-keyring.gpg
 EOF
 
-# Add Neon Src
-#tee /etc/apt/sources.list.d/neon.sources <<'EOF'
-#X-Repolib-Name: KDE Neon Sources
-#Enabled: yes
-#Types: deb-src
-#URIs: http://archive.neon.kde.org/user/
-#Suites: jammy
-#Components: main
-#X-Repolib-Default-Mirror: http://archive.neon.kde.org/user/
-#Signed-By: /etc/apt/keyrings/kde-neon-keyring.gpg.key
-#EOF
-
 # Get keyrings
 mkdir -p /etc/apt/keyrings/
 wget https://github.com/PikaOS-Linux/pika-base-debian-container/raw/main/pika-keyring.gpg.key -O /etc/apt/keyrings/pika-keyring.gpg.key
 wget https://github.com/PikaOS-Linux/pika-base-debian-container/raw/main/deb-multimedia-keyring.gpg -O /etc/apt/keyrings/deb-multimedia-keyring.gpg
-#wget https://github.com/PikaOS-Linux/pika-base-debian-container/raw/main/kde-neon-keyring.gpg.key -O /etc/apt/keyrings/kde-neon-keyring.gpg.key
 
 # Setup apt configration
-mkdir -p  /etc/apt/preferences.d/
+mkdir -p /etc/apt/preferences.d/
 tee /etc/apt/preferences.d/0-pika-debian-settings <<'EOF'
 # Blacklist Packages from being pulled from debian experimental
-Package: *libwebrtc-audio-processing*
-Pin: release a=experimental
-Pin-Priority: 100
-
-Package: *selinux*
+Package: *libwebrtc-audio-processing* *selinux*
 Pin: release a=experimental
 Pin-Priority: -1
-
-Package: *
-Pin: release a=experimental   
-Pin-Priority: -1
-
-# Lower Debians's priority under pika's
-
-Package: *
-Pin: release o=Debian
-Pin-Priority: 400
-
-# We only want gnome from experimental
-Package: adwaita-icon-theme adwaita-icon-theme-full at-spi2-core at-spi2-common at-spi2-core-udeb libatspi2.0-0 libatspi0-udeb libatspi2.0-dev gir1.2-atspi-2.0 at-spi2-doc libatk-adaptor libatk-adaptor-udeb libatk-bridge2.0-0 libatk-bridge-2.0-0-udeb libatk-bridge2.0-dev libatk1.0-0 libatk1.0-udeb libatk1.0-dev libatk1.0-doc gir1.2-atk-1.0 baobab gnome-calls gnome-calls-doc fonts-cantarell d-spy dspy-common libdspy-1-1 libdspy-dev libdconf1 libdconf-dev libdconf-doc dconf-cli dconf-gsettings-backend dconf-service dconf-editor libdevhelp-3-6 libdevhelp-dev devhelp devhelp-common gir1.2-devhelp-3.0 epiphany-browser epiphany-browser-data evince evince-common libevdocument3-4 libevview3-3 libevince-dev gir1.2-evince-3.0 evolution-data-server evolution-data-server-common evolution-data-server-tests evolution-data-server-dev evolution-data-server-doc libedataserver-1.2-27 libedataserver1.2-dev gir1.2-edataserver-1.2 libedataserverui-1.2-4 libedataserverui1.2-dev gir1.2-edataserverui-1.2 libedataserverui4-1.0-0 libedataserverui4-dev gir1.2-edataserverui4-1.0 libcamel-1.2-64 libcamel1.2-dev gir1.2-camel-1.2 libebook-1.2-21 libebook1.2-dev gir1.2-ebook-1.2 libedata-book-1.2-27 libedata-book1.2-dev gir1.2-edatabook-1.2 gir1.2-ebookcontacts-1.2 libebook-contacts-1.2-4 libebook-contacts1.2-dev libecal-2.0-2 libecal2.0-dev gir1.2-ecal-2.0 libedata-cal-2.0-2 libedata-cal2.0-dev gir1.2-edatacal-2.0 libebackend-1.2-11 libebackend1.2-dev gir1.2-ebackend-1.2 libfolks26 libfolks-dev libfolks-doc folks-common gir1.2-folks-0.7 libfolks-telepathy26 libfolks-telepathy-dev libfolks-telepathy-doc libfolks-eds26 libfolks-eds-dev libfolks-eds-doc libfolks-dummy26 libfolks-dummy-dev libfolks-dummy-doc folks-tools gcab libgcab-1.0-0 libgcab-dev libgcab-doc libgcab-tests gir1.2-gcab-1.0 gcr libgck-1-dev libgck-1-doc libgck-1-0 gir1.2-gck-1 libgcr-3-dev libgcr-3-doc libgcr-base-3-1 libgcr-ui-3-1 gir1.2-gcr-3 gcr4 libgck-2-dev libgck-2-doc libgck-2-2 gir1.2-gck-2 libgcr-4-dev libgcr-4-doc libgcr-4-4 gir1.2-gcr-4 libgdk-pixbuf-2.0-0 libgdk-pixbuf2.0-bin libgdk-pixbuf2.0-common libgdk-pixbuf-2.0-dev libgdk-pixbuf2.0-doc libgdk-pixbuf2.0-0-udeb libgdk-pixbuf-2.0-0-udeb gir1.2-gdkpixbuf-2.0 gdk-pixbuf-tests gdm3 libgdm1 libgdm-dev gir1.2-gdm-1.0 libgeocode-glib-2-0 libgeocode-glib-dev libgeocode-glib-doc gir1.2-geocodeglib-2.0 geocode-glib-tests geocode-glib-common libgexiv2-2 gir1.2-gexiv2-0.10 libgexiv2-dev libgexiv2-doc gi-docgen gi-docgen-doc gjs gjs-tests libgjs0g libgjs-dev libglib2.0-0 libglib2.0-tests libglib2.0-udeb libglib2.0-bin libglib2.0-dev libglib2.0-dev-bin libglib2.0-data libglib2.0-doc glib-networking glib-networking-services glib-networking-common glib-networking-tests libglibmm-2.68-1 libglibmm-2.68-dev libglibmm-2.68-doc libgmime-3.0-dev gir1.2-gmime-3.0 libgmime-3.0-doc libgmime-3.0-0 gmime-bin libgnome-autoar-0-0 libgnome-autoar-gtk-0-0 libgnome-autoar-0-dev libgnome-autoar-gtk-0-dev gir1.2-gnomeautoar-0.1 gir1.2-gnomeautoargtk-0.1 libgnome-autoar-doc gnome-backgrounds libgnome-bluetooth-3.0-13 libgnome-bluetooth-ui-3.0-13 libgnome-bluetooth-3.0-dev libgnome-bluetooth-ui-3.0-dev gir1.2-gnomebluetooth-3.0 libgnome-bluetooth-doc gnome-bluetooth-3-common gnome-bluetooth-sendto gnome-boxes gnome-builder gnome-calculator gnome-calendar gnome-characters gnome-clocks gnome-color-manager gnome-connections gnome-console kgx gnome-contacts gnome-control-center gnome-control-center-faces gnome-control-center-dev gnome-control-center-data gnome-desktop3-data gnome-desktop-3-tests loupe gnome-snapshot libgnome-desktop-3-20 libgnome-desktop-3-dev libgnome-bg-4-2 libgnome-desktop-4-2 libgnome-rr-4-2 libgnome-bg-4-dev libgnome-desktop-4-dev libgnome-rr-4-dev gir1.2-gnomedesktop-3.0 gir1.2-gnomebg-4.0 gir1.2-gnomedesktop-4.0 gir1.2-gnomerr-4.0 libgnome-desktop-doc libgnome-desktop-3-dev-bin gnome-disk-utility gnome-font-viewer gnome-initial-setup gnome-keyring gnome-keyring-pkcs11 libpam-gnome-keyring gnome-logs gnome-maps gnome-menus libgnome-menu-3-0 libgnome-menu-3-dev gir1.2-gmenu-3.0 gnome-music gnome-online-accounts libgoa-1.0-0b libgoa-1.0-dev libgoa-backend-1.0-1 libgoa-backend-1.0-dev libgoa-1.0-common libgoa-1.0-doc gir1.2-goa-1.0 gnome-remote-desktop gnome-session gnome-startup-applications ubuntu-session unity-session gnome-session-bin gnome-session-common gnome-settings-daemon gnome-settings-daemon-common gnome-settings-daemon-dev gnome-shell gnome-shell-common gnome-shell-extension-prefs gnome-shell-extensions gnome-software gnome-software-common gnome-software-plugin-flatpak gnome-software-plugin-snap gnome-software-dev gnome-software-doc gnome-system-monitor gnome-text-editor gnome-tour gnome-user-docs gnome-user-docs-as gnome-user-docs-ca gnome-user-docs-cs gnome-user-docs-da gnome-user-docs-de gnome-user-docs-el gnome-user-docs-es gnome-user-docs-fa gnome-user-docs-fi gnome-user-docs-fr gnome-user-docs-gl gnome-user-docs-gu gnome-user-docs-he gnome-user-docs-hi gnome-user-docs-hr gnome-user-docs-hu gnome-user-docs-id gnome-user-docs-it gnome-user-docs-ja gnome-user-docs-kn gnome-user-docs-ko gnome-user-docs-lt gnome-user-docs-lv gnome-user-docs-mr gnome-user-docs-nl gnome-user-docs-pa gnome-user-docs-pl gnome-user-docs-pt gnome-user-docs-ro gnome-user-docs-ru gnome-user-docs-sl gnome-user-docs-sr gnome-user-docs-sv gnome-user-docs-ta gnome-user-docs-te gnome-user-docs-tr gnome-user-docs-uk gnome-user-docs-vi gnome-user-docs-zh-hans gnome-user-share gnome-weather libgirepository-1.0-1 libgirepository1.0-dev libgirepository1.0-doc gobject-introspection gir1.2-glib-2.0 gir1.2-freedesktop libgom-1.0-0 libgom-1.0-dev libgom-1.0-doc gir1.2-gom-1.0 libgrilo-0.3-0 libgrilo-0.3-dev libgrilo-0.3-bin libgrilo-0.3-doc gir1.2-grilo-0.3 grilo-plugins-0.3-base grilo-plugins-0.3-extra grilo-plugins-0.3 gsettings-desktop-schemas gsettings-desktop-schemas-dev gir1.2-gdesktopenums-3.0 gsound-tools libgsound0 libgsound-dev libgsound-doc gir1.2-gsound-1.0 libgspell-1-2 libgspell-1-common libgspell-1-dev gir1.2-gspell-1 libgspell-1-doc gspell-1-tests libgssdp-1.6-0 gir1.2-gssdp-1.6 libgssdp-1.6-dev libgssdp-doc gssdp-tools libgtk-4-1 libgtk-4-1-udeb libgtk-4-common libgtk-4-bin libgtk-4-dev libgtk-4-doc libgtk-4-media-gstreamer libgtk-4-media-ffmpeg gtk-4-examples gtk-4-tests gir1.2-gtk-4.0 libgtk-3-0 libgtk-3-0-udeb libgtk-3-common libgtk-3-bin libgtk-3-dev libgtk-3-doc gtk-3-examples gir1.2-gtk-3.0 gtk-update-icon-cache libgail-3-0 libgail-3-dev libgail-3-doc gtk-doc-tools libgvnc-1.0-0 libgvnc-1.0-dev libgtk-vnc-2.0-0 libgtk-vnc-2.0-dev gir1.2-gtk-vnc-2.0 gvncviewer libgtkmm-4.0-dev libgtkmm-4.0-0 libgtkmm-4.0-doc libgtksourceview-4-0 libgtksourceview-4-common libgtksourceview-4-dev libgtksourceview-4-doc gir1.2-gtksource-4 libgtksourceview-4-tests libgtksourceview-5-0 libgtksourceview-5-common libgtksourceview-5-dev libgtksourceview-5-doc gir1.2-gtksource-5 libgtksourceview-5-tests libgupnp-1.6-0 gir1.2-gupnp-1.6 libgupnp-1.6-dev libgupnp-doc libgupnp-av-1.0-3 gir1.2-gupnp-av-1.0 libgupnp-av-1.0-dev libgupnp-av-doc libgupnp-dlna-2.0-4 gir1.2-gupnpdlna-2.0 libgupnp-dlna-2.0-dev libgupnp-dlna-doc gupnp-dlna-tools gvfs gvfs-backends gvfs-common gvfs-daemons gvfs-fuse gvfs-libs libjson-glib-1.0-0 libjson-glib-dev libjson-glib-1.0-common libjson-glib-doc gir1.2-json-1.0 json-glib-tools libjsonrpc-glib-1.0-1 libjsonrpc-glib-1.0-dev libjsonrpc-glib-doc gir1.2-jsonrpc-1.0 libadwaita-1-0 libadwaita-1-dev gir1.2-adw-1 libadwaita-1-doc libadwaita-1-examples libdex-1-1 libdex-dev libdex-doc gir1.2-dex-1 libgee-0.8-2 libgee-0.8-dev gir1.2-gee-0.8 gir1.2-gsf-1 libgsf-1-114 libgsf-1-dev libgsf-1-common libgsf-bin libgtop-2.0-11 libgtop2-dev libgtop2-common libgtop2-doc gir1.2-gtop-2.0 libgweather-4-0 libgweather-4-dev libgweather-4-common gir1.2-gweather-4.0 libgxps2 libgxps-dev libgxps-utils libgxps-doc gir1.2-gxps-0.1 libhandy-1-0 libhandy-1-dev gir1.2-handy-1 handy-1-examples libmediaart-2.0-0 libmediaart-2.0-dev libmediaart-doc gir1.2-mediaart-2.0 libnma0 libnma-gtk4-0 libnma-common libnma-dev libnma-headers libnma-gtk4-dev libnma-doc gir1.2-nma-1.0 gir1.2-nma4-1.0 libnotify-dev libnotify4 libnotify-bin libnotify-doc gir1.2-notify-0.7 libpanel-1-1 libpanel-dev libpanel-common libpanel-doc gir1.2-panel-1 libpeas-1.0-0 libpeas-dev libpeas-doc libpeas-common gir1.2-peas-1.0 libpeas-2-0 libpeas-2-dev libpeas-2-doc libpeas-2-common gir1.2-peas-2 librsvg2-dev librsvg2-2 librsvg2-common librsvg2-doc librsvg2-bin librsvg2-tests gir1.2-rsvg-2.0 libsecret-1-dev libsecret-1-0 libsecret-common libsecret-tools gir1.2-secret-1 libshumate-1.0-1 libshumate-dev gir1.2-shumate-1.0 libshumate-common libshumate-doc libsigc++-3.0-0 libsigc++-3.0-dev libsigc++-3.0-doc libsoup-3.0-dev libsoup-3.0-0 libsoup-3.0-common libsoup-3.0-doc gir1.2-soup-3.0 libsoup-3.0-tests mm-common mutter mutter-13-tests gir1.2-mutter-13 libmutter-13-0 libmutter-13-dev libmutter-test-13 mutter-common mutter-common-bin nautilus gir1.2-nautilus-4.0 libnautilus-extension-dev libnautilus-extension4 nautilus-data orca libpango1.0-0 libpango-1.0-0 libpangocairo-1.0-0 libpangoxft-1.0-0 libpangoft2-1.0-0 libpango1.0-udeb libpango1.0-dev libpango1.0-doc gir1.2-pango-1.0 pango1.0-tests pango1.0-tools libpangomm-2.48-1 libpangomm-2.48-dev libpangomm-2.48-doc libphodav-3.0-0 libphodav-3.0-dev libphodav-3.0-common spice-webdavd chezdav python3-pyatspi python3-gi python3-gi-dbg python-gi-dev python3-gi-cairo librest-1.0-0 librest-dev gir1.2-rest-1.0 librest-doc librest-extras-1.0-0 librest-extras-dev gir1.2-restextras-1.0 rygel rygel-2.8-dev librygel-core-2.8-0 librygel-server-2.8-0 librygel-renderer-2.8-0 librygel-renderer-gst-2.8-0 librygel-ruih-2.8-0 librygel-db-2.8-0 rygel-ruih rygel-tracker rygel-playbin rygel-gst-launch rygel-preferences simple-scan gnome-sushi sysprof libsysprof-6-6 libsysprof-6-modules libsysprof-capture-4-dev libsysprof-6-dev tecla libtemplate-glib-1.0-0 libtemplate-glib-1.0-dev libtemplate-glib-common libtemplate-glib-doc gir1.2-template-1.0 libtotem0 totem totem-common totem-plugins gir1.2-totem-1.0 libtotem-dev libtotem-plparser-dev libtotem-plparser-common libtotem-plparser18 gir1.2-totemplparser-1.0 tracker libtracker-sparql-3.0-0 libtracker-sparql-3.0-dev libtracker-doc gir1.2-tracker-3.0 tracker-test-utils tracker-extract tracker-miner-fs libvalacodegen-0.56-0 valac-bin valac valac-0.56-vapi vala-0.56-doc libvala-0.56-0 libvala-0.56-dev valadoc libvaladoc-0.56-0 libvaladoc-0.56-data libvaladoc-0.56-dev libvte-2.91-0 libvte-2.91-0-udeb libvte-2.91-gtk4-0 gir1.2-vte-2.91 gir1.2-vte-3.91 libvte-2.91-dev libvte-2.91-gtk4-dev libvte-2.91-common libvte-2.91-doc libvte-2.91-gtk4-doc xdg-desktop-portal-gnome yelp libyelp0 libyelp-dev yelp-tools yelp-xsl libtelepathy-farstream3 libtelepathy-farstream3-dbg libtelepathy-farstream-dev libtelepathy-farstream-doc libtelepathy-glib0 libtelepathy-glib-dev libtelepathy-glib-doc gir1.2-telepathyglib-0.12 telepathy-haze telepathy-idle telepathy-mission-control-5 libmission-control-plugins0 libmission-control-plugins-dev libmission-control-plugins-doc libtelepathy-qt5-0 libtelepathy-qt5-farstream0 libtelepathy-qt5-dev telepathy-rakia telepathy-specification 
-Pin: release a=experimental   
-Pin-Priority: 425
 
 Package: *
 Pin: release o=Unofficial Multimedia Packages
-Pin-Priority: 450
-
-# Neon blacklist
-Package: neon-desktop base-files
-Pin: origin archive.neon.kde.org
-Pin-Priority: -1
+Pin-Priority: 550
 
 # Give pika lowest priority because we don't want it sources overwriting
 Package: *
@@ -127,3 +90,5 @@ Package: amdgpu-core amdgpu-pro-core amdgpu-dkms amdgpu-pro-lib32
 Pin: release a=*
 Pin-Priority: -10
 EOF
+
+wget https://github.com/PikaOS-Linux/pika-base-debian-container/raw/main/0-debian-exp-overrides -O /etc/apt/preferences.d/0-debian-exp-overrides
