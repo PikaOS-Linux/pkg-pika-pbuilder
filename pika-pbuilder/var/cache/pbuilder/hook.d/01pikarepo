@@ -63,5 +63,9 @@ wget https://github.com/PikaOS-Linux/pika-base-debian-container/raw/main/0-debia
 
 cat /0-debian-exp-overrides >> /etc/apt/preferences
 
+mkdir -p /etc/apt/preferences.d/
+cp -vf /etc/apt/preferences /etc/apt/preferences.d/0-pika-debian-settings
+
+
 apt-get update -y
 apt-get install apt-utils -y
