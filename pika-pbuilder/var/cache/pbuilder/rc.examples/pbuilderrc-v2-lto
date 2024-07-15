@@ -4,7 +4,7 @@ HOOKDIR="/var/cache/pbuilder/hook.d/"
 APTCACHEHARDLINK=no
 # pbuilder dist config
 DIST="sid"
-EXTRAPACKAGES="ca-certificates"
+EXTRAPACKAGES="ca-certificates wget"
 # pbuilder build options
 export DEBIAN_FRONTEND="noninteractive"
 export DEB_BUILD_MAINT_OPTIONS="optimize=+lto -march=x86-64-v2 -O3 -flto -fuse-linker-plugin -falign-functions=32"
