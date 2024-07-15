@@ -20,3 +20,4 @@ DEBOOTSTRAPOPTS=(${DEBOOTSTRAPOPTS[@]/--keyring=*})
 DEBOOTSTRAPOPTS=(${DEBOOTSTRAPOPTS[@]} --keyring=/usr/share/keyrings/debian-archive-keyring.gpg)
 EXTRAPACKAGES=eatmydata
 EATMYDATA=yes
+PBUILDERSATISFYDEPENDSCMD="/usr/lib/pbuilder/pbuilder-satisfydepends-apt"
