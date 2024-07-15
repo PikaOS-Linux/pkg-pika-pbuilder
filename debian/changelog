@@ -1,4 +1,4 @@
-pika-pbuilder (0.2.17-101pika1) nest; urgency=medium
+pika-pbuilder (0.2.18-101pika1) nest; urgency=medium
 
   * Initial release. (Closes: #nnnn)  <nnnn is the bug number of your ITP>
 
