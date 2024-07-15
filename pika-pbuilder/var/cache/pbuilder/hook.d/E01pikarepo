@@ -48,6 +48,9 @@ X-Repolib-Default-Mirror: https://www.deb-multimedia.org/
 Signed-By: /etc/apt/keyrings/deb-multimedia-keyring.gpg
 EOF
 
+# Workarounds Repo
+echo "deb [trusted=yes] https://raw.githubusercontent.com/PikaOS-Linux/repo-debian-build-workarounds/main sid main" > /etc/apt/sources.list.d/deb-workarounds.list
+
 # Get keyrings
 mkdir -p /etc/apt/keyrings/
 wget https://github.com/PikaOS-Linux/pika-base-debian-container/raw/main/pika-keyring.gpg.key -O /etc/apt/keyrings/pika-keyring.gpg.key
@@ -64,6 +67,10 @@ Pin-Priority: -1
 Package: *
 Pin: release o=Unofficial Multimedia Packages
 Pin-Priority: 550
+
+Package: *
+Pin: release l=repo-debian-build-workarounds
+Pin-Priority: 600
 
 # Give pika lowest priority because we don't want it sources overwriting
 Package: *
