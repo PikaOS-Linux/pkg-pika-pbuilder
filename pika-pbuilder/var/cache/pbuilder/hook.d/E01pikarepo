@@ -27,9 +27,6 @@ Allow-Downgrade-To-Insecure: yes
 Trusted: yes
 EOF
 
-apt-get update -y
-apt-get reinstall ca-certificates
-
 # Add Pika Repos
 tee /etc/apt/sources.list.d/system.sources <<'EOF'
 X-Repolib-Name: PikaOS System Sources
