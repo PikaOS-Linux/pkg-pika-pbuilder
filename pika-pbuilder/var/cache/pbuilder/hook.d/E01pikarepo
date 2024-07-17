@@ -27,6 +27,17 @@ Allow-Downgrade-To-Insecure: yes
 Trusted: yes
 EOF
 
+touch /etc/apt/apt.conf.d/99verify-peer.conf \
+&& echo >>/etc/apt/apt.conf.d/99verify-peer.conf "Acquire { https::Verify-Peer false }"
+
+chmod 755 /etc /etc/ssl /etc/ssl/certs
+chmod 644 /etc/ssl/certs/ca-certificates.crt
+
+dpkg-reconfigure tzdata
+date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"
+apt update -y
+apt upgrade ca-certificates --fix-missing -y
+
 # Add Pika Repos
 tee /etc/apt/sources.list.d/system.sources <<'EOF'
 X-Repolib-Name: PikaOS System Sources
@@ -113,9 +124,6 @@ Pin-Priority: -10
 EOF
 
 wget https://github.com/PikaOS-Linux/pika-base-debian-container/raw/main/0-debian-exp-overrides -O /etc/apt/preferences.d/0-debian-exp-overrides
-
-touch /etc/apt/apt.conf.d/99verify-peer.conf \
-&& echo >>/etc/apt/apt.conf.d/99verify-peer.conf "Acquire { https::Verify-Peer false }"
 
 apt-get update -y
 apt-get upgrade -y
