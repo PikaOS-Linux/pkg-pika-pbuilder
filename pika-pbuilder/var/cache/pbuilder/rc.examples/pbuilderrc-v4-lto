@@ -7,8 +7,8 @@ DIST="sid"
 EXTRAPACKAGES="ca-certificates wget"
 # pbuilder build options
 export DEBIAN_FRONTEND="noninteractive"
-export DEB_BUILD_MAINT_OPTIONS="optimize=+lto -march=x86-64-v4 -O3 -flto -fuse-linker-plugin -falign-functions=32"
-export DEB_CFLAGS_MAINT_APPEND="-march=x86-64-v4 -O3 -flto -fuse-linker-plugin -falign-functions=32"
+export DEB_BUILD_MAINT_OPTIONS="optimize=+lto -march=x86-64-v4 -O3 -flto -fuse-linker-plugin -falign-functions=32 -w -DQT_NO_VERSION_TAGGING"
+export DEB_CFLAGS_MAINT_APPEND="-march=x86-64-v4 -O3 -flto -fuse-linker-plugin -falign-functions=32 -w -DQT_NO_VERSION_TAGGING"
 export DEB_LDFLAGS_MAINT_APPEND="-march=x86-64-v4 -O3 -flto -fuse-linker-plugin -falign-functions=32"
 export DEB_BUILD_OPTIONS="parallel=8 nocheck notest terse"
 export DPKG_GENSYMBOLS_CHECK_LEVEL=0
