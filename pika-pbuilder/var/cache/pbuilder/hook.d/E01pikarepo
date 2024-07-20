@@ -127,4 +127,4 @@ wget https://github.com/PikaOS-Linux/pika-base-debian-container/raw/main/0-debia
 
 apt-get update -y
 apt-get upgrade -y
-apt-get install -y libdrm-dev
+apt-get install -y libdrm-dev gudev-1.0 gbm
