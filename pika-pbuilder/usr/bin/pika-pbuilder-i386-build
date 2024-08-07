@@ -1,2 +1,4 @@
 #! /bin/bash
-ARCH=i386 pbuilder cowbuilder --architecture i386 --buildresult . --logfile buildlog.log "$@"
+echo "Using i386 pbuilder config!"
+cp -vf /var/cache/pbuilder/rc.examples/pbuilderrc-i386 /etc/pbuilderrc
+ARCH=i386 cowbuilder build --architecture i386 --buildresult . --logfile buildlog.log "$@"

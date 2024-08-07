@@ -24,14 +24,6 @@ X-Repolib-Default-Mirror: http://deb.debian.org/debian
 Signed-by: /usr/share/keyrings/debian-archive-keyring.gpg
 EOF
 
-chmod 755 /etc /etc/ssl /etc/ssl/certs
-chmod 644 /etc/ssl/certs/ca-certificates.crt
-
-dpkg-reconfigure tzdata
-date -s "$(wget -qSO- --max-redirect=0 google.com 2>&1 | grep Date: | cut -d' ' -f5-8)Z"
-apt update -y
-apt upgrade ca-certificates --fix-missing -y
-
 # Add Pika Repos
 tee /etc/apt/sources.list.d/system.sources <<'EOF'
 X-Repolib-Name: PikaOS System Sources
@@ -74,16 +66,12 @@ Package: *
 Pin: release o=Unofficial Multimedia Packages
 Pin-Priority: 550
 
-Package: pika-abi-bridge*
-Pin: release a=pika,c=canary
-Pin-Priority: 600
-
 # Give pika lowest priority because we don't want it sources overwriting
 Package: *
 Pin: release a=pika,c=canary
-Pin-Priority: 390
+Pin-Priority: 380
 
-Package: pika-abi-bridge*
+Package: pika-abi-bridge* *exiv2* akonadi-mime-data libkf5akonadimime-dev libkf5akonadimime5
 Pin: release a=pika,c=canary
 Pin-Priority: 600
 EOF
