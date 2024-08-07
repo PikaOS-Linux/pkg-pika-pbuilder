@@ -1,8 +1,12 @@
-name: PikaOS Package Release
+name: PikaOS Package Build & Release (Canary) (amd64-v3)
 
 on:
-  workflow_dispatch
-
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/release-canary-v3'
+      
 jobs:
   build:
     runs-on: self-hosted
